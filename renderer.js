@@ -80,9 +80,15 @@ const setIcon = (currentMinute, currentState) => {
   mb.tray.setImage(file)
 }
 
+const setToolTip = (currentMinute, currentState) => {
+  const breakSuffix = currentState === 'breaking' ? ' - break' : ''
+  mb.tray.setToolTip(currentMinute.toString() + breakSuffix)
+}
+
 const setCurrentMinute = ms => {
   currentMinute = Math.ceil(msToMin(ms))
   setIcon(currentMinute, state)
+  setToolTip(currentMinute, state)
 }
 
 setCurrentMinute(0)
